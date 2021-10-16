@@ -47,7 +47,6 @@ namespace ZipHandlerApp
             // Insert logic for processing found files here.
             static void ProcessFile(string path)
             {
-                CompressedFileExtractor extractor;
                 switch (Path.GetExtension(path).ToLower())
                 {
                     case ".zip":
