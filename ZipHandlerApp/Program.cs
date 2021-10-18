@@ -10,7 +10,7 @@ namespace ZipHandlerApp
         static void Main(string[] args)
         {
 
-            string[] paths = { args[0] };
+            string[] paths = { Path.GetDirectoryName(args[0]) };
 
             foreach (string path in paths)
             {

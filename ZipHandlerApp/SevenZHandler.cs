@@ -28,7 +28,7 @@ namespace ZipHandlerApp
             ProcessStartInfo pro = new ProcessStartInfo();
             pro.WindowStyle = ProcessWindowStyle.Hidden;
             pro.FileName = zPath;
-            pro.Arguments = string.Format("x \"{0}\" -y -o\"{1}\"", Path.GetFullPath(path), Path.GetDirectoryName(path));
+            pro.Arguments = string.Format("x \"{0}\" -y -o\"{1}\"", Path.GetFullPath(path), Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path)));
             Process x = Process.Start(pro);
             x.WaitForExit();
         }

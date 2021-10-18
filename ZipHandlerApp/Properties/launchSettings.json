@@ -2,7 +2,7 @@
   "profiles": {
     "ZipHandlerApp": {
       "commandName": "Project",
-      "commandLineArgs": "c:\\Users\\laszl\\SourceCodes\\ZipHandler\\testfolder\\"
+      "commandLineArgs": "c:\\Users\\laszl\\documents\\test\\test1.zip"
     }
   }
 }
