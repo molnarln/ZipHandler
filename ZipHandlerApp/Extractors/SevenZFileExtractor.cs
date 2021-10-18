@@ -1,4 +1,6 @@
-﻿namespace ZipHandlerApp
+﻿using ZipHandlerApp.Handlers;
+
+namespace ZipHandlerApp.Extractors
 {
     class SevenZFileExtractor : CompressedFileExtractor
     {

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace ZipHandlerApp
+namespace ZipHandlerApp.Handlers
 {
     class SevenZHandler : ICompressFileHandler
     {

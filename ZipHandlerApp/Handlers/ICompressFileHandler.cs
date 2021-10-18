@@ -1,4 +1,4 @@
-﻿namespace ZipHandlerApp
+﻿namespace ZipHandlerApp.Handlers
 {
     internal interface ICompressFileHandler
     {

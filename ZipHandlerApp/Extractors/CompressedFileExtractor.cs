@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using ZipHandlerApp.Handlers;
 
-namespace ZipHandlerApp
+namespace ZipHandlerApp.Extractors
 {
     abstract class CompressedFileExtractor
     {
