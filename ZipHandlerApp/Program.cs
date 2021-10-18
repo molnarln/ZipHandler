@@ -9,7 +9,8 @@ namespace ZipHandlerApp
     {
         static void Main(string[] args)
         {
-            string[] paths = { @"c:\Users\laszl\SourceCodes\ZipHandler\testfolder\" };
+
+            string[] paths = { args[0] };
 
             foreach (string path in paths)
             {
@@ -19,7 +20,7 @@ namespace ZipHandlerApp
                     ProcessFile(path);
                 }
                 else if (Directory.Exists(path))
-                {   
+                {
                     // This path is a directory
                     ProcessDirectory(path);
                 }
