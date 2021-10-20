@@ -7,3 +7,4 @@ This version's binaries are included in this project, but also available at the 
 https://www.7-zip.org/download.html
 
 To build the project, in Visual Studio add the 3 files (7zxa.dll, 7za.dll, 7za.exe) as existing items (as links), and in the file properties select the "Copy to Output Directory" for each file.
+.NET 5 Runtime is required to run the application.
