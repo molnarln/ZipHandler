@@ -8,7 +8,6 @@ namespace ZipHandlerApp
     {
         static void Main(string[] args)
         {
-
             string[] paths = { Path.GetDirectoryName(args[0]) };
 
             foreach (string path in paths)
@@ -34,7 +33,7 @@ namespace ZipHandlerApp
             static void ProcessDirectory(string targetDirectory)
             {
                 // Process the list of files found in the directory.
-                string[] fileEntries = System.IO.Directory.GetFiles(targetDirectory);
+                string[] fileEntries = Directory.GetFiles(targetDirectory);
                 foreach (string fileName in fileEntries)
                     ProcessFile(fileName);
 

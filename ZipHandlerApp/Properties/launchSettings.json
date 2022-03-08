@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ZipHandlerApp": {
-      "commandName": "Project",
-      "commandLineArgs": "c:\\Users\\laszl\\documents\\test\\test1.zip"
-    }
-  }
-}
