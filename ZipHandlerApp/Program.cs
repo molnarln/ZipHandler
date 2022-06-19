@@ -1,11 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using ZipHandlerApp.Extractors;
 
 namespace ZipHandlerApp
 {
     class Program
     {
+        static CompressedFileExtractor SevenZFileExtractor;
+        static CompressedFileExtractor ZipExtractor;
+
         static void Main(string[] args)
         {
             string[] paths = { Path.GetDirectoryName(args[0]) };
@@ -49,11 +53,12 @@ namespace ZipHandlerApp
                 switch (Path.GetExtension(path).ToLower())
                 {
                     case ".zip":
-                        ExtractAndDeleteFile(new ZipFileExtractor(), path);
+                        ZipExtractor ??= new ZipFileExtractor();
                         break;
 
                     case ".7z":
-                        ExtractAndDeleteFile(new SevenZFileExtractor(), path);
+                        SevenZFileExtractor ??= new SevenZFileExtractor();
+                        ExtractAndDeleteFile(SevenZFileExtractor, path);
                         break;
 
                 }
