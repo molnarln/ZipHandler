@@ -54,6 +54,7 @@ namespace ZipHandlerApp
                 {
                     case ".zip":
                         ZipExtractor ??= new ZipFileExtractor();
+                        ExtractAndDeleteFile(ZipExtractor, path);
                         break;
 
                     case ".7z":
