@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.CompilerServices;
+using ZipHandlerApp.Enums;
 using ZipHandlerApp.Extractors;
+using ZipHandlerApp.Logging;
 
 namespace ZipHandlerApp
 {
@@ -9,10 +10,31 @@ namespace ZipHandlerApp
     {
         static CompressedFileExtractor SevenZFileExtractor;
         static CompressedFileExtractor ZipExtractor;
+        static LogType logType;
 
         static void Main(string[] args)
         {
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Error: Missing arguments: <path> <c/f>");
+                return;
+            }
             string[] paths = { Path.GetDirectoryName(args[0]) };
+
+            string logTypeString = args[1];
+
+            switch (logTypeString)
+            {
+                case "c":
+                    logType = LogType.CONSOLE;
+                    break;
+                case "f":
+                    logType = LogType.FILE;
+                    break;
+                default:
+                    logType = LogType.CONSOLE;
+                    break;
+            }
 
             foreach (string path in paths)
             {
@@ -69,7 +91,18 @@ namespace ZipHandlerApp
 
             static void ExtractAndDeleteFile(CompressedFileExtractor extractor, string path)
             {
-                extractor.ExtractFile(path);
+                switch (logType)
+                {
+                    case LogType.CONSOLE:
+                        extractor.ExtractFile(path, ConsoleLogger.Instance);
+                        break;
+                    case LogType.FILE:
+                        extractor.ExtractFile(path, FileLogger.Instance);
+                        break;
+                    default:
+                        extractor.ExtractFile(path, ConsoleLogger.Instance);
+                        break;
+                }
                 File.Delete(path);
             }
         }

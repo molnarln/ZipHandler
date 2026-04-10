@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using ZipHandlerApp.Handlers;
+using ZipHandlerApp.Logging;
 
 namespace ZipHandlerApp.Extractors
 {
@@ -8,10 +9,10 @@ namespace ZipHandlerApp.Extractors
     {
         public abstract ICompressFileHandler GetFileHandler();
 
-        public virtual void ExtractFile(string path)
+        public virtual void ExtractFile(string path, ILogger logger)
         {
             ICompressFileHandler handler = GetFileHandler();
-            Console.WriteLine($"The {Path.GetFileName(path)} file is going to be extrated...");
+            logger.Log($"The {Path.GetFileName(path)} file is going to be extracted...");
             handler.ExtractCompressedFile(path);
         }
     }
