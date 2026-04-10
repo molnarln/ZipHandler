@@ -11,12 +11,12 @@ namespace ZipHandlerApp.Logging
 
         private static readonly object _lock = new object();
 
-        private FileLogger()
-        {
-            Log("--- Logging initialized ---");
-        }
+        private FileLogger() { }
 
-        static FileLogger() { }
+        static FileLogger()
+        {
+            Instance.Log("--- Logging initialized ---");
+        }
 
         public static FileLogger Instance => instance;
 
