@@ -15,7 +15,7 @@ namespace ZipHandlerApp
         {
             if (args.Length < 2)
             {
-                Console.WriteLine("Error: Missing arguments: <path> <c/f>");
+                _currentLogger.Log("Error: Missing arguments: <path> <c/f>");
                 return;
             }
             string[] paths = { Path.GetDirectoryName(args[0]) };
@@ -41,8 +41,11 @@ namespace ZipHandlerApp
                 }
                 else
                 {
-                    Console.WriteLine("{0} is not a valid file or directory.", path);
+                    _currentLogger.Log($"{path} is not a valid file or directory.");
                 }
+
+                Console.WriteLine("Press any button to exit.");
+                Console.ReadKey();
             }
 
             // Process all files in the directory passed in, recurse on any directories
@@ -68,11 +71,11 @@ namespace ZipHandlerApp
                 if (_context.TrySetStrategy(extension))
                 {
                     _context.Execute(path, _currentLogger);
-                    Console.WriteLine("Processed file '{0}'.", path);
+                    _currentLogger.Log($"Processed file {path}.");
                 }
                 else
                 {
-                    Console.WriteLine($"Unknown extension: {extension}");
+                    _currentLogger.Log($"Unknown extension: {extension}");
                 }
             }
         }
