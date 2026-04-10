@@ -8,27 +8,18 @@ namespace ZipHandlerApp.Strategies
 {
     internal class ExtractorContext
     {
-        private readonly Dictionary<string, CompressedFileExtractor> _strategies = new Dictionary<string, CompressedFileExtractor>();
+        private CompressedFileExtractor _strategy;
 
-        public ExtractorContext()
+        public void SetStrategy(CompressedFileExtractor strategy)
         {
-            _strategies.Add(".zip", new ZipFileExtractor());
-            _strategies.Add(".7z", new SevenZFileExtractor());
+            this._strategy = strategy;
         }
 
-        public void ExecuteStrategy(string path, ILogger logger)
+        public void Execute(string path, ILogger logger)
         {
-            string extension = Path.GetExtension(path).ToLower();
-
-            if (_strategies.ContainsKey(extension))
+            if (_strategy != null)
             {
-                var extractor = _strategies[extension];
-                extractor.ExtractFile(path, logger);
-                File.Delete(path);
-            }
-            else
-            {
-                Console.WriteLine($"No extraction strategy found for: {extension}");
+                _strategy.ExtractFile(path, logger);
             }
         }
     }

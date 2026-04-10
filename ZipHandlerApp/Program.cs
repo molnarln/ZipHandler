@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ZipHandlerApp.Extractors;
 using ZipHandlerApp.Logging;
 using ZipHandlerApp.Strategies;
 
@@ -62,8 +63,24 @@ namespace ZipHandlerApp
             // Insert logic for processing found files here.
             static void ProcessFile(string path)
             {
-                _context.ExecuteStrategy(path, _currentLogger);
-                Console.WriteLine("Processed file '{0}'.", path);
+                string extension = Path.GetExtension(path).ToLower();
+
+                CompressedFileExtractor selectedStrategy = extension switch
+                {
+                    ".zip" => new ZipFileExtractor(),
+                    ".7z" => new SevenZFileExtractor(),
+                    _ => null
+                };
+
+                if (selectedStrategy != null)
+                {
+                    _context.SetStrategy(selectedStrategy);
+                    _context.Execute(path, _currentLogger);
+                }
+                else
+                {
+                    Console.WriteLine($"Unknown extension: {extension}");
+                }
             }
         }
     }
