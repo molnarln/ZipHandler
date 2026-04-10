@@ -18,11 +18,6 @@ namespace ZipHandlerApp.Handlers
 
         private void UnzipSevenZFile(string path)
         {
-            if (path is null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
             string zPath = "7za.exe"; //add to proj and set CopyToOuputDir
 
             ProcessStartInfo pro = new ProcessStartInfo();

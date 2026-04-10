@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace ZipHandlerApp.Logging
 {
@@ -10,7 +9,7 @@ namespace ZipHandlerApp.Logging
         private ConsoleLogger() { }
 
         static ConsoleLogger() { }
-            
+
         public static ConsoleLogger Instance { get { return instance; } }
 
         public void Log(string message)
