@@ -65,17 +65,10 @@ namespace ZipHandlerApp
             {
                 string extension = Path.GetExtension(path).ToLower();
 
-                CompressedFileExtractor selectedStrategy = extension switch
+                if (_context.TrySetStrategy(extension))
                 {
-                    ".zip" => new ZipFileExtractor(),
-                    ".7z" => new SevenZFileExtractor(),
-                    _ => null
-                };
-
-                if (selectedStrategy != null)
-                {
-                    _context.SetStrategy(selectedStrategy);
                     _context.Execute(path, _currentLogger);
+                    Console.WriteLine("Processed file '{0}'.", path);
                 }
                 else
                 {
