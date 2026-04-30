@@ -5,11 +5,11 @@ namespace ZipHandlerApp.Logging
 {
     internal sealed class FileLogger : ILogger
     {
+        private static readonly object _lock = new object();
+
         private static readonly FileLogger instance = new FileLogger();
 
         private readonly string _logPath = "ZipHandler_log.txt";
-
-        private static readonly object _lock = new object();
 
         private FileLogger() { }
 
